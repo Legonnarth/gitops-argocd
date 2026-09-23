@@ -1,0 +1,16 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: BackendTLSPolicy
+metadata:
+  name: kargo-api-tls
+  namespace: kargo
+spec:
+  targetRefs:
+    - group: ""
+      kind: Service
+      name: kargo-api
+  validation:
+    hostname: localhost
+    caCertificateRefs:
+      - group: ""
+        kind: ConfigMap
+        name: kargo-api-ca
