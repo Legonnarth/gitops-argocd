@@ -5,16 +5,19 @@ metadata:
   namespace: argocd
 spec:
   project: default
+
   source:
     repoURL: https://github.com/Legonnarth/gitops-argocd
     targetRevision: main
     path: apps/simple-app
+
   destination:
     server: https://kubernetes.default.svc
     namespace: simple-app
+
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-      syncOptions:
-        - CreateNamespace=true
+    syncOptions:
+      - CreateNamespace=true
