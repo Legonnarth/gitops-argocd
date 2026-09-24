@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: simple-app-staging
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/Legonnarth/gitops-argocd
+    targetRevision: main
+    path: apps/simple-app/staging
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: simple-app-staging
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

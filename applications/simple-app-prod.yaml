@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: simple-app
+  name: simple-app-prod
   namespace: argocd
 spec:
   project: default
@@ -9,11 +9,11 @@ spec:
   source:
     repoURL: https://github.com/Legonnarth/gitops-argocd
     targetRevision: main
-    path: apps/simple-app
+    path: apps/simple-app/prod
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: simple-app
+    namespace: simple-app-prod
 
   syncPolicy:
     automated:
